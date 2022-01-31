@@ -1,0 +1,21 @@
+{{with .Get 0}}
+    {{$filename := string .}}
+    {{with site.GetPage $filename}}
+         <article>
+            {{$alt := .Param "alt"}}
+            {{with .Param "image"}}
+                <figure class="right">
+                    <img src="/assets/img/{{.}}" alt="{{$alt}}">
+                </figure>
+            {{end}}
+            {{.Content}}
+        </article>
+    {{else}}
+    <!-- debug code -->
+        <div class="debug">
+            debug code <code>{{.}}</code>
+            <br>site.GetPage $filename = <code>{{site.GetPage $filename}}</code>
+        </div>
+    <!-- ### -->    
+    {{end}}
+{{end}}
